@@ -46,9 +46,6 @@ Example of Just The `Search Functionality`....
 
 ![CMSystem_Demo_01](/Demo_CMSImg/CMS_07.png)
 
-Video Demo : 
-[![Video Demo](/Demo_CMSImg/CMS_01.png)](/Demo_CMSImg/CMSystemVideo.mp4)
-`Click on the image to watch the video demo, of more Functionalities.....`
 
 
 ## Features : 
