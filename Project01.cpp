@@ -33,6 +33,7 @@ todo      6. Sort the entire system into modules (S/W Processes)...
 #include <conio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include "arrow_menu.h"
 
 bool last_entry_comp = false; // Aids in finding the count of entries for respective branches...
 bool last_entry_mech = false;
@@ -114,13 +115,15 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
         std::string str, str1, str2, str3, str4;
         in.open("Students.txt");
         int count = {};
-        std::cout << "\n\t\t\t1 <- Search student by 'Name'....." << std::endl
-                  << "\t\t\t2 <- Search student by 'Roll number'....." << std::endl
-                  << "\t\t\t3 <- Search student by 'Email'....." << std::endl
-                  << "\t\t\t4 <- Search student by 'Branch'....." << std::endl
-                  << "\t\t\t0 <- To return to previous page....." << std::endl
-                  << "\n\t\t ..... Enter your choice : "; std::cin >> choice;
-        if(choice == 1) {
+        std::vector <std::string> search_menu {
+            "Search student by 'Name'",
+            "Search student by 'Roll number'",
+            "Search student by 'Email'",
+            "Search student by 'Branch'",
+            "Return to previous page"
+        };
+        choice = menu::arrowMenu(search_menu); 
+        if(choice == 0) {
             system("clear");    
             printHeader();
             std::cout << "\n\n\n\t\t\tEnter Name of student to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -144,7 +147,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 2) {
+        else if(choice == 1) {
             system("clear");    
             printHeader();
             std::cout << "\n\n\n\t\t\tEnter Roll Number of student to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -174,7 +177,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 3) {
+        else if(choice == 2) {
             system("clear");    
             printHeader();
             std::cout << "\n\n\n\t\t\tEnter Email of student to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -200,7 +203,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 4) {
+        else if(choice == 3) {
             system("clear");    
             printHeader();
             std::cout << "\n\n\n\t\t\tEnter Branch of student to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -232,7 +235,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 0) {
+        else if(choice == 4) {
             return;
         }
         else {
@@ -248,12 +251,14 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
 
         std::string deleteName, deleteRollno, deleteEmail;
         int count = {};
-        std::cout << "\n\t\t\t1 <- Delete student by 'Name'....." << std::endl
-                  << "\t\t\t2 <- Delete student by 'Roll number'....." << std::endl
-                  << "\t\t\t3 <- Delete student by 'Email'....." << std::endl
-                  << "\t\t\t0 <- To return to previous page....." << std::endl
-                  << "\n\t\t .....Enter your choice : "; std::cin >> choice;
-        if(choice == 1) {
+        std::vector <std::string> delete_menu {
+            "Delete student by 'Name'",
+            "Delete student by 'Roll number'",
+            "Delete student by 'Email'",
+            "Return to previous page"
+        };
+        choice = menu::arrowMenu(delete_menu);
+        if(choice == 0) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Name of student to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -294,7 +299,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             out.close();
         }
-        else if(choice == 2) {
+        else if(choice == 1) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Roll number of student to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -336,7 +341,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             out.close();
         }
-        else if(choice == 3) {
+        else if(choice == 2) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Email ID of student to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -378,7 +383,7 @@ class CollegeStudents : public CollegeDetails {  //STUDENTS CLASS **************
             in.close();
             out.close();
         }
-        else if(choice == 0) {
+        else if(choice == 3) {
             return;
         }
         else {
@@ -542,13 +547,16 @@ class CollegeTeachers : public CollegeDetails {
         std::string str1, str2, str3, str4, str5;
         in.open("Teachers.txt");
         int count = {};
-        std::cout << "\n\t\t\t1 <- Search teacher by 'Name'....." << std::endl
-                  << "\t\t\t2 <- Search teacher by 'ID'....." << std::endl
-                  << "\t\t\t3 <- Search teacher by 'Email'....." << std::endl
-                  << "\t\t\t4 <- Search teacher by 'Department'....." << std::endl
-                  << "\t\t\t0 <- To return to previous page....." << std::endl
-                  << "\n\t\t ..... Enter your choice : "; std::cin >> choice;
-        if(choice == 1) {
+        std::vector <std::string> search_menu {
+            "Search teacher by 'Name'",
+            "Search teacher by 'ID'",
+            "Search teacher by 'Email'",
+            "Search teacher by 'Department'",
+            "Return to previous page"
+        };
+        choice = menu::arrowMenu(search_menu);
+
+        if(choice == 0) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Name of teacher to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -574,7 +582,7 @@ class CollegeTeachers : public CollegeDetails {
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 2) {
+        else if(choice == 1) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter ID of teacher to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -606,7 +614,7 @@ class CollegeTeachers : public CollegeDetails {
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 3) {
+        else if(choice == 2) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Email of teacher to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -634,7 +642,7 @@ class CollegeTeachers : public CollegeDetails {
                 if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
             }
         }
-        else if(choice == 4) {
+        else if(choice == 3) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Branch of teacher to be searched : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -669,7 +677,7 @@ class CollegeTeachers : public CollegeDetails {
             in.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 0) {
+        else if(choice == 4) {
             return;
         }
         else {
@@ -685,12 +693,15 @@ class CollegeTeachers : public CollegeDetails {
 
         std::string deleteName, deleteID, deleteEmail;
         int count = {};
-        std::cout << "\n\t\t\t1 <- Delete teacher entry by 'Name'....." << std::endl
-                  << "\t\t\t2 <- Delete teacher entry by 'ID'....." << std::endl
-                  << "\t\t\t3 <- Delete teacher entry by 'Email'....." << std::endl
-                  << "\t\t\t0 <- To return to previous page....." << std::endl
-                  << "\n\t\t .....Enter your choice : "; std::cin >> choice;
-        if(choice == 1) {
+        std::vector <std::string> delete_menu {
+            "Delete teacher entry by 'Name'",
+            "Delete teacher entry by 'ID'",
+            "Delete teacher entry by 'Email'",
+            "Return to previous page"
+        };
+        choice = menu::arrowMenu(delete_menu);
+    
+        if(choice == 0) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Name of teacher to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -734,7 +745,7 @@ class CollegeTeachers : public CollegeDetails {
             in.close();
             out.close();
         }
-        else if(choice == 2) {
+        else if(choice == 1) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter ID of teacher entry to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -779,7 +790,7 @@ class CollegeTeachers : public CollegeDetails {
             in.close();
             out.close();
         }
-        else if(choice == 3) {
+        else if(choice == 2) {
             system("clear");    
             printHeader();
             std::cout << "\n\t\t\tEnter Email ID of student to be deleted : "; std::cin.ignore();  //FLUSHING STREAM...
@@ -825,7 +836,7 @@ class CollegeTeachers : public CollegeDetails {
             out.close();
             if(count == 0) { std::cout << "\n\t\t\tNo such Entries found !\n"; }
         }
-        else if(choice == 0) {
+        else if(choice == 3) {
             return;
         }
         else {
@@ -978,28 +989,31 @@ class DataBase : public CollegeStudents, public CollegeTeachers {  //DATABASE CL
 
 void DataBase :: externalPage() {  //DEFAULT PAGE
     int choice;
-    while(choice != 0) {
+    while(true) {
         system("cls");
         printHeader();
-        std::cout << "\n\t\t\t1 <- To Enter Login Page....." << std::endl
-                  << "\t\t\t2 <- To know more about program....." << std::endl
-                  << "\t\t\t3 <- To Reset the password....." << std::endl
-                  << "\t\t\t0 <- To Exit program....." << std::endl
-                  << "\n\t\t ..... Enter your choice : "; std::cin >> choice;
+        std::vector <std::string> main_menu {
+            "Enter Login Page",
+            "Know more about program",
+            "Reset the password",
+            "Exit program"
+        };
+        choice = menu::arrowMenu(main_menu);
+        
         loading_refresh();
         switch(choice) {
-            case 1 :loginPage();
+            case 0 :loginPage();
                     break;
-            case 2 :system("cls");
+            case 1 :system("cls");
                     personalInfoPage();
                     break;
-            case 3 :system("cls");
+            case 2 :system("cls");
                     resetPass();
                     break;
-            case 0 :system("cls");
+            case 3 :system("cls");
                     printHeader();
                     std::cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t        .....THANK YOU !.....\n\n\n\n\n";
-                    break;
+                    exit(1);
             default:std::cout << std::endl << "\n\t\t\t\t\t\t\t Incorrect Choice Entered ! \n\t\t\t\t\t\t\t "; 
                     system("pause");
         }
@@ -1106,13 +1120,16 @@ void DataBase :: mainPage()  {  //MAIN REGISTRATION FUNCTION
     while(choice != 0) {
         system("cls");
         printHeader();
-        std::cout << std::endl << "\t\t\t1 -> Students Section....." << std::endl
-                  << "\t\t\t2 -> Teachers Section....." << std::endl
-                  << "\t\t\t0 -> Log Out....." << std::endl
-                  << "\n\t\t ..... Enter your choice : "; std::cin >> choice;
+        std::vector <std::string> section_menu {
+            "Enter Students Section",
+            "Enter Teachers Section",
+            "Log Out"
+        };
+        choice = menu::arrowMenu(section_menu);
+        
         loading_refresh();
         switch(choice) {
-            case 1 : {
+            case 0 : {
                 while(choice != 0) {
                     system("cls");
                     printHeader();
@@ -1148,7 +1165,8 @@ void DataBase :: mainPage()  {  //MAIN REGISTRATION FUNCTION
                         case 2 :
                                 system("cls");
                                 printHeader();
-                                p-> searchDetails(); std::cout << "\n\n\t\t\t\t\t\t\t\t";
+                                p-> searchDetails(); 
+                                std::cout << "\n\n\t\t\t\t\t\t\t\t";
                                 system("pause");
                                 break;
                         case 3 : 
@@ -1163,7 +1181,7 @@ void DataBase :: mainPage()  {  //MAIN REGISTRATION FUNCTION
                                 p-> editDetails(); std::cout << "\n\n\t\t\t\t\t\t\t\t";
                                 system("pause");
                                 break;
-                        case 0 :break;
+                        case 0 :return;
                         default:std::cout << "\n\t\t\t    Incorrect Choice Entered !.....\t\t\t " << std::endl;
                                 std::cout << "\n\t\t\t";
                                 system("pause"); 
@@ -1171,7 +1189,7 @@ void DataBase :: mainPage()  {  //MAIN REGISTRATION FUNCTION
                 }
 
             } break;         
-            case 2 : {
+            case 1 : {
                 while(choice != 0) {
                     system("cls");
                     printHeader();
@@ -1222,14 +1240,14 @@ void DataBase :: mainPage()  {  //MAIN REGISTRATION FUNCTION
                                 q-> editDetails(); std::cout << "\n\n\t\t\t\t\t\t\t\t";
                                 system("pause");
                                 break;
-                        case 0 :break;
+                        case 0 :return;
                         default:std::cout << "\n\t\t\t    Incorrect Choice Entered !.....\t\t\t " << std::endl;
                                 std::cout << "\n\t\t\t";
                                 system("pause"); 
                     }
                 }
             } break;
-            case 0 :break;
+            case 2 :break;
             default:std::cout << "\n\t\t\t    Incorrect Choice Entered !.....\t\t\t " << std::endl;
                     std::cout << "\n\t\t\t";
                     system("pause"); 
@@ -1251,7 +1269,7 @@ int main()
     std::cout << "\n\t\t\tRe-Enter password : "; confirm = encriptPass();
 
     if(confirm == p) { 
-        loading();
+        // loading();
         printHeader();
         std::cout << "\n\n\n\n\t\t\t\t\t---- SYSTEM SET-UP SUCCESSFUL ----"
                   << "\n\n\n\n\n\t\t\tPassword successfully set !   \n\t\t\t. . . "; 

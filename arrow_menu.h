@@ -35,6 +35,13 @@ void resetTextColor() {
         std::cout << "\033[0m";
     #endif
 }
+void printHeader01() {
+            std::cout << "\n\n\n\t\t-------------------------------------------------------------------------------------" << std::endl
+                      << "\t\t<<<<<<<<<<<<<<<<<<<<<<<<<<<<| COLLEGE MANAGEMENT SYSTEM |>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << std::endl
+                      << "\t\t-------------------------------------------------------------------------------------" << std::endl
+                      << "\t\t\t\t\t\t\t\t\t    Creator : Haysten_D_Costa\n"
+                      << "\t\t\t\t\t\t\t\t\t\t\t       21co56\n";
+}
 namespace menu
 {
     int arrowMenu(const std::vector<std::string>& menuOptions) { // Function creates a arrowMenu, for the passed vector(options)....
@@ -45,14 +52,16 @@ namespace menu
         while (true) {
             // Display the menu options with highlighting....
             clearScreen();
+            printHeader01();
+            std::cout << std::endl << std::endl << std::endl;
             for (size_t i{0}; i<numOptions; i++) {
 
                 if (i == choice) {
                     setTextColor(2); // Green color for the highlighted option....
-                    std::cout << " -> " << menuOptions[i] << std::endl;
+                    std::cout << "\t\t\t\t -> " << menuOptions[i] << std::endl;
                     resetTextColor(); // Reset text color after printing the option....
                 } else {
-                    std::cout << "    " << menuOptions[i] << std::endl;
+                    std::cout << "\t\t\t\t    " << menuOptions[i] << std::endl;
                 }
             }
             // Wait for user input
