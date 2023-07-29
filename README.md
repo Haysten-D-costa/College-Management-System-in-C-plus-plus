@@ -63,8 +63,8 @@ II. Faculty Management:
 4. Compile the project using the C++ compiler:
    
   ```bash
-   g++ Project01.cpp
+   g++ classes.cpp global_var_func.cpp main.cpp -o output
   ```
   ```bash
-   a.exe
+   output.exe
   ```
