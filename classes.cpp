@@ -18,6 +18,13 @@
 static int studentID = 0;
 static int teacherID = 0;
 
+/**
+ * The function "setDetails" assigns a unique student ID, prompts the user to enter name, roll number,
+ * email, and branch, and stores the input values.
+ * 
+ * @param choice The parameter "choice" is an integer that represents the user's choice for the branch
+ * of the college student.
+ */
 void CollegeStudents :: setDetails(int choice) {
         
     studentID = countEntries(choice);
@@ -43,6 +50,12 @@ void CollegeStudents :: setDetails(int choice) {
     std::cout << "\t\t\tEnter Email           : "; getline(std::cin, email);
     std::cout << "\t\t\tEnter Branch          : "; getline(std::cin, branch);
 }
+/**
+ * The function "createFile" writes student information to a file named "Students.txt" based on the
+ * given choice of branch.
+ * 
+ * @param choice The "choice" parameter is an integer that determines the branch of the student.
+ */
 void CollegeStudents :: createFile(int choice) {  //FOR STUDENTS
 
     std::ofstream out;
@@ -65,6 +78,12 @@ void CollegeStudents :: createFile(int choice) {  //FOR STUDENTS
         << branch << std::endl;
     out.close();
 }
+/**
+ * The function "searchDetails" allows the user to search for student details based on different
+ * criteria such as name, roll number, email, and branch.
+ * 
+ * @return The function does not have a return type specified, so it does not return anything.
+ */
 void CollegeStudents :: searchDetails() {  //FOR STUDENTS
 
     std::ifstream in;
@@ -199,6 +218,12 @@ void CollegeStudents :: searchDetails() {  //FOR STUDENTS
         std::cout << std::endl << "Incorrect Choice Entered ! " << std::endl; //break;
     }       
 }
+/**
+ * The function "deleteDetails" deletes a student's details from a file based on their name, roll
+ * number, or email.
+ * 
+ * @return The function is not returning any value. It has a void return type.
+ */
 void CollegeStudents :: deleteDetails() {
 
     studentID--;
@@ -348,6 +373,12 @@ void CollegeStudents :: deleteDetails() {
         std::cout << std::endl << "Incorrect Choice Entered ! " << std::endl; //break;
     }       
 }
+/**
+ * The function "editDetails" allows the user to edit the details of a college student by entering
+ * their roll number and providing new information.
+ * 
+ * @return The function does not have a return type.
+ */
 void CollegeStudents :: editDetails() {
 
     std::string editRollno, str1, str2, str3, str4, str;
@@ -400,6 +431,16 @@ void CollegeStudents :: editDetails() {
     in.close();
     out.close();
 }
+/**
+ * The function "countEntries" reads a file called "Students.txt" and counts the number of entries that
+ * match a given choice.
+ * 
+ * @param choice The parameter "choice" is an integer that determines the search criteria for counting
+ * entries. If "choice" is 0, the search criteria is set to "Computer". If "choice" is 1, the search
+ * criteria is set to "Mechanical". If "choice" is any other value
+ * 
+ * @return the count of entries that match the specified choice.
+ */
 int CollegeStudents :: countEntries(int choice) {
 
     int countEntries = 0;
@@ -440,6 +481,11 @@ int CollegeStudents :: countEntries(int choice) {
     in.close();
     return(countEntries);
 }
+/**
+ * The function counts the number of entries in a file and returns the count divided by 4.
+ * 
+ * @return the count of entries in the "Students.txt" file divided by 4.
+ */
 int CollegeStudents :: countEntAll() {
     int countEntries = 0;
     std::string line;
