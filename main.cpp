@@ -48,7 +48,7 @@ int main()
     std::cout << "\n\t\t\tRe-Enter password : "; confirm = encriptPass();
 
     if(confirm == p) { 
-        // loading();
+        loading();
         printHeader();
         std::cout << "\n\n\n\n\t\t\t\t\t---- SYSTEM SET-UP SUCCESSFUL ----"
                   << "\n\n\n\n\n\t\t\tPassword successfully set !   \n\t\t\t. . . "; 
